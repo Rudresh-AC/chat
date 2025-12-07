@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 export default function HomeScreen() {
   return (
     <View>
-      <Text className="text-3xl">buielding chat ß</Text>
+      <Text className="text-3xl">Settings</Text>
     </View>
   );
 }
