@@ -5,7 +5,7 @@ export default function DrawerLayout() {
     <Drawer>
       <Drawer.Screen
         name="(home)"
-        options={{ title: 'Home' }}
+        options={{ title: 'Home', headerShown: false }}
       />
       <Drawer.Screen
         name="about"
