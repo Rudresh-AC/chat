@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useSignUp } from '@clerk/clerk-expo';
 import { Link, useRouter } from 'expo-router';
 
@@ -35,6 +35,7 @@ export default function SignUpScreen() {
       // See https://clerk.com/docs/guides/development/custom-flows/error-handling
       // for more info on error handling
       console.error(JSON.stringify(err, null, 2));
+      Alert.alert('Error', (err as Error).message);
     }
   };
 
@@ -52,32 +53,38 @@ export default function SignUpScreen() {
       // and redirect the user
       if (signUpAttempt.status === 'complete') {
         await setActive({ session: signUpAttempt.createdSessionId });
-        router.replace('/');
+        // router.replace('/');
       } else {
         // If the status is not complete, check why. User may need to
         // complete further steps.
         console.error(JSON.stringify(signUpAttempt, null, 2));
+        Alert.alert('Code is not correct');
       }
     } catch (err) {
       // See https://clerk.com/docs/guides/development/custom-flows/error-handling
       // for more info on error handling
       console.error(JSON.stringify(err, null, 2));
+      Alert.alert('Error', (err as Error).message);
     }
   };
 
   if (pendingVerification) {
     return (
-      <>
-        <Text>Verify your email</Text>
+      <View className="p-4 gap-4 bg-white flex-1 ">
+        <Text className="text-2xl">Verify your email</Text>
         <TextInput
           value={code}
           placeholder="Enter your verification code"
           onChangeText={(code) => setCode(code)}
+          className="border border-neutral-400 p-4 rounded-lg"
         />
-        <TouchableOpacity onPress={onVerifyPress}>
-          <Text>Verify</Text>
+        <TouchableOpacity
+          onPress={onVerifyPress}
+          className="bg-blue-500 p-4 rounded-full items-center"
+        >
+          <Text className="font-semibold text-white text-lg">Verify</Text>
         </TouchableOpacity>
-      </>
+      </View>
     );
   }
 
