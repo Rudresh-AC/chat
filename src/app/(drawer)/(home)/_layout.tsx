@@ -5,7 +5,15 @@ export default function HomeLayout() {
     <Stack>
       <Stack.Screen
         name="(tabs)"
-        options={{ headerShown: false }}
+        options={{ headerShown: false, title: 'Home' }}
+      />
+      <Stack.Screen
+        name="channel/[id]"
+        options={{
+          title: 'Channel',
+          headerBackButtonDisplayMode: 'minimal',
+          headerLargeTitleEnabled: true,
+        }}
       />
     </Stack>
   );
