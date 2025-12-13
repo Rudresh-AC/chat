@@ -1,6 +1,8 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
-import { Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import channels from '@/data/channels';
+import messages from '@/data/messages';
+import MessageList from '@/components/MessageList';
 
 export default function ChannelScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -16,9 +18,10 @@ export default function ChannelScreen() {
   }
 
   return (
-    <View className="flex-1 justify-center items-center">
+    <>
       <Stack.Screen options={{ title: channel.name }} />
-      <Text className="text-2xl">Chanel screen: {channel.name}</Text>
-    </View>
+
+      <MessageList />
+    </>
   );
 }
