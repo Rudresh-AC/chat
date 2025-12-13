@@ -29,7 +29,7 @@ export default function ChannelListItem({ channel }: ChannelListItemProps) {
         </Text>
       </View>
       {channel.lastMessage && (
-        <Text className="text-xs text-gray-500">
+        <Text className="text-xs text-neutral-500">
           {formatDistanceToNow(new Date(channel.lastMessage?.createdAt), {
             addSuffix: true,
           })}
