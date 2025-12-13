@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import channels from '@/data/channels';
 
 export default function ChannelScreen() {
-  const { id } = useLocalSearchParams();
+  const { id } = useLocalSearchParams<{ id: string }>();
 
   const channel = channels.find((c) => c.id === id);
 
